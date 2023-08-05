@@ -23,29 +23,33 @@ struct InformationView: View {
         VStack {
             HStack {
                 Text("Age:")
+                    .bold()
                 Spacer()
                 Text("\(user.age)")
             }
             .padding(.bottom)
             HStack {
-                Text("Email:")
-                Spacer()
-                Text("\(user.wrappedEmail)")
-            }
-            .padding(.bottom)
-            HStack {
                 Text("Company:")
+                    .bold()
                 Spacer()
                 Text("\(user.wrappedCompany)")
             }
             .padding(.bottom)
-            HStack {
-                Text("Address:")
-                Spacer()
-                Text("\(user.wrappedAddress)")
+            Group {
+                VStack(alignment: .leading) {
+                    Text("Email:")
+                        .bold()
+                    Text("\(user.wrappedEmail)")
+                }
+                .padding(.bottom)
+                VStack(alignment: .leading) {
+                    Text("Address:")
+                        .bold()
+                    Text("\(user.wrappedAddress)")
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .bold()
         .frame(maxWidth: .infinity)
         .padding()
         .background(.gray)
