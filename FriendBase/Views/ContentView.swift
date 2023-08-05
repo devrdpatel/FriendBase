@@ -25,6 +25,8 @@ struct ContentView: View {
                     UserDetailView(user: user)
                 } label: {
                     HStack {
+                        ActiveIndicator(isActive: user.isActive
+                        )
                         VStack(alignment: .leading) {
                             Text(user.wrappedName)
                             Text(user.isActive ? "Active" : "Inactive")
@@ -32,22 +34,14 @@ struct ContentView: View {
                                 .foregroundColor(user.isActive ? .green : .secondary)
                         }
                         Spacer()
-
-                        Text(user.nameInitials)
-                            .bold()
-                            .padding(.horizontal)
-                            .foregroundColor(.white)
-                            .frame(minWidth: 60)
-                            .background(user.isActive ? .green : .secondary)
-                            .clipShape(Capsule())
                     }
                 }
-                .padding(.bottom)
+                .padding(.vertical, 3)
             }
             .searchable(text: $searchText, prompt: "Look for someone")
             .navigationTitle("Friendface")
             .task {
-                await fetchData()
+                // await fetchData()
             }
             .confirmationDialog("Sort Options", isPresented: $showingSortOptions) {
                 Button("A-Z") { sortDescriptors = [SortDescriptor(\.name)] }
@@ -63,14 +57,6 @@ struct ContentView: View {
             }
         }
     }
-    
-//    var filteredUsers: FetchedResults<StoredUser> {
-//        if searchText.isEmpty {
-//            return users
-//        } else {
-//             return users.filter { $0.wrappedName.contains(searchText) }
-//        }
-//    }
     
     func fetchData() async {
         guard attemptedDataFetch == false else { return }

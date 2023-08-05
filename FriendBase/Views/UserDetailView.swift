@@ -12,7 +12,6 @@ struct ViewDivider: View {
         Rectangle()
             .frame(height: 2)
             .foregroundColor(.secondary)
-            .padding(.vertical)
     }
 }
 
@@ -27,21 +26,23 @@ struct InformationView: View {
                 Spacer()
                 Text("\(user.age)")
             }
-            .padding(.bottom)
+            ViewDivider()
             HStack {
                 Text("Company:")
                     .bold()
                 Spacer()
                 Text("\(user.wrappedCompany)")
             }
-            .padding(.bottom)
+            
+            ViewDivider()
+            
             Group {
                 VStack(alignment: .leading) {
                     Text("Email:")
                         .bold()
                     Text("\(user.wrappedEmail)")
                 }
-                .padding(.bottom)
+                ViewDivider()
                 VStack(alignment: .leading) {
                     Text("Address:")
                         .bold()
@@ -61,6 +62,8 @@ struct InformationView: View {
 struct UserDetailView: View {
     //@ObservedObject var userData: UserData
     let user: StoredUser
+    
+    @FetchRequest(sortDescriptors: []) var users: FetchedResults<StoredUser>
     
     var body: some View {
         GeometryReader { geometry in
@@ -83,6 +86,7 @@ struct UserDetailView: View {
                         .padding(.top)
                     
                     ViewDivider()
+                        .padding(.vertical)
                                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -119,6 +123,7 @@ struct UserDetailView: View {
                     }
                     
                     ViewDivider()
+                        .padding(.vertical)
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -129,7 +134,10 @@ struct UserDetailView: View {
                         }
                         
                         ForEach(user.friendsArray) { friend in
-                            Text(friend.wrappedName)
+                            HStack {
+                                ActiveIndicator(isActive: friendIsActive(friend: friend))
+                                Text(friend.wrappedName)
+                            }
                         }
                     }
                 }
@@ -138,5 +146,14 @@ struct UserDetailView: View {
         }
         .navigationTitle(user.wrappedName)
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func friendIsActive(friend: StoredFriend) -> Bool {
+        for user in users {
+            if user.wrappedId == friend.wrappedId {
+                return user.isActive
+            }
+        }
+        return false
     }
 }

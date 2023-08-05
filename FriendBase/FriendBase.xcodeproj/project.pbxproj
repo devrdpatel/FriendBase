@@ -21,6 +21,7 @@
 		2F9F04C72A4BC10C007FFF3D /* StoredFriend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F04C52A4BC10C007FFF3D /* StoredFriend+CoreDataProperties.swift */; };
 		2F9F04CA2A4BC13B007FFF3D /* StoredUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F04C82A4BC13B007FFF3D /* StoredUser+CoreDataClass.swift */; };
 		2F9F04CB2A4BC13B007FFF3D /* StoredUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F04C92A4BC13B007FFF3D /* StoredUser+CoreDataProperties.swift */; };
+		2FBF714B2A7F00E800C4967B /* ActiveIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF714A2A7F00E800C4967B /* ActiveIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		2F9F04C52A4BC10C007FFF3D /* StoredFriend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StoredFriend+CoreDataProperties.swift"; path = "Models/StoredFriend/StoredFriend+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		2F9F04C82A4BC13B007FFF3D /* StoredUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StoredUser+CoreDataClass.swift"; path = "Models/StoredUser/StoredUser+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		2F9F04C92A4BC13B007FFF3D /* StoredUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StoredUser+CoreDataProperties.swift"; path = "Models/StoredUser/StoredUser+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		2FBF714A2A7F00E800C4967B /* ActiveIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				2F022FD32A48CB02005CE08E /* ContentView.swift */,
 				2F022FE52A49041E005CE08E /* UserDetailView.swift */,
+				2FBF714A2A7F00E800C4967B /* ActiveIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				2F42DD012A7D8131002B0D20 /* FriendBase.xcdatamodeld in Sources */,
 				2F42DD112A7DC213002B0D20 /* FilteredList.swift in Sources */,
 				2F022FE62A49041E005CE08E /* UserDetailView.swift in Sources */,
+				2FBF714B2A7F00E800C4967B /* ActiveIndicator.swift in Sources */,
 				2F022FE22A48CC4E005CE08E /* UserData.swift in Sources */,
 				2F022FD22A48CB02005CE08E /* FriendBaseApp.swift in Sources */,
 			);
