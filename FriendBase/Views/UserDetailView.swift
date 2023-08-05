@@ -54,7 +54,7 @@ struct InformationView: View {
     }
 }
 
-struct UserView: View {
+struct UserDetailView: View {
     //@ObservedObject var userData: UserData
     let user: StoredUser
     
@@ -136,9 +136,3 @@ struct UserView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-//
-//struct UserView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserView(user: User(id: "aj1kda1", isActive: true, name: "Jacob Harling", age: 23, company: "Amazon", email: "harling@gmail.com", address: "1503 Swift rd", about: "Lorum ipsum oreom Lorum ipsum oreom Lorum ipsum oreom Lorum ipsum oreom Lorum ipsum oreom", registered: Date.now, tags: ["tag1", "tag2", "tag3"], friends: []))
-//    }
-//}

@@ -19,7 +19,8 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     
     // Creates the FetchRequest and stores the content closure for later use
     init(filterKey: String, filterValue: String, predicateKey: PredicateKeys, sortDescriptors: [SortDescriptor<T>] = [], @ViewBuilder content: @escaping (T) -> Content) {
-        _fetchedResults = FetchRequest<T>(sortDescriptors: sortDescriptors, predicate: NSPredicate(format: "%K \(predicateKey) %@", filterKey, filterValue))
+        let predicate: NSPredicate? = filterValue.isEmpty ? nil : NSPredicate(format: "%K \(predicateKey) %@", filterKey, filterValue)
+        _fetchedResults = FetchRequest<T>(sortDescriptors: sortDescriptors, predicate: predicate)
         self.content = content
     }
     

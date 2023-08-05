@@ -18,9 +18,9 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(users) { user in
+            FilteredList(filterKey: "name", filterValue: searchText, predicateKey: .contains) { (user: StoredUser) in
                 NavigationLink {
-                    UserView(user: user)
+                    UserDetailView(user: user)
                 } label: {
                     HStack {
                         VStack(alignment: .leading) {
