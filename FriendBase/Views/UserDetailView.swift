@@ -107,7 +107,7 @@ struct UserDetailView: View {
                                         .padding(.vertical, 5)
                                         .overlay(
                                             Capsule()
-                                                .strokeBorder(.black, lineWidth: 2)
+                                                .strokeBorder(.primary, lineWidth: 2)
                                         )
                                 }
                             }

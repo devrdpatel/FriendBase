@@ -10,15 +10,17 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var users: FetchedResults<StoredUser>
+    @FetchRequest(sortDescriptors: []) var users: FetchedResults<StoredUser>
     
     //@StateObject var userData = UserData()
     @State private var searchText = ""
     @State private var attemptedDataFetch = false
+    @State private var showingSortOptions = false
+    @State private var sortDescriptors: [SortDescriptor<StoredUser>] = []
     
     var body: some View {
         NavigationView {
-            FilteredList(filterKey: "name", filterValue: searchText, predicateKey: .contains) { (user: StoredUser) in
+            FilteredList(filterKey: "name", filterValue: searchText, predicateKey: .contains, sortDescriptors: sortDescriptors) { (user: StoredUser) in
                 NavigationLink {
                     UserDetailView(user: user)
                 } label: {
@@ -47,9 +49,16 @@ struct ContentView: View {
             .task {
                 await fetchData()
             }
+            .confirmationDialog("Sort Options", isPresented: $showingSortOptions) {
+                Button("A-Z") { sortDescriptors = [SortDescriptor(\.name)] }
+                Button("Z-A") { sortDescriptors = [SortDescriptor(\.name, order: .reverse)] }
+                Button("Default") { sortDescriptors = [] }
+            }
             .toolbar {
-                Button("Sort") {
-                    // Add sort options
+                Button {
+                    showingSortOptions = true
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
                 }
             }
         }
