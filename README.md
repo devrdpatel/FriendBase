@@ -1,6 +1,6 @@
 # FriendBase
 
-Created using SwiftUI, FriendBase enables users to easily view others within their organization with just the tap of a few buttons. The app fetches data through a network call to update the information that was already stored in Core Data and then neatly displays the information to users.
+Created using SwiftUI, FriendBase enables users to easily view others within their organization with just the tap of a few buttons. The app fetches data through a network call to update the information that was cached in Core Data and then cleanly displays the information to users.
 
 ## App Preview
 
