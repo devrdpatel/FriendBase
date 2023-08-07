@@ -7,18 +7,68 @@
 
 import SwiftUI
 
-struct ViewDivider: View {
+struct UserDetailView: View {
+    let user: StoredUser
+    
+    @FetchRequest(sortDescriptors: []) var users: FetchedResults<StoredUser>
+    
     var body: some View {
-        Rectangle()
-            .frame(height: 2)
-            .foregroundColor(.secondary)
+        ScrollView {
+            VStack {
+                userInitialsBadge
+                                
+                aboutSection
+                informationSection
+                tagsScrollView
+                
+                friendsList
+            }
+            .padding(.horizontal)
+        }
+        .navigationTitle(user.wrappedName)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func friendIsActive(friend: StoredFriend) -> Bool {
+        for user in users {
+            if user.wrappedId == friend.wrappedId {
+                return user.isActive
+            }
+        }
+        return false
     }
 }
 
-struct InformationView: View {
-    let user: StoredUser
+extension UserDetailView {
+    private var userInitialsBadge: some View {
+        Text(user.nameInitials)
+            .font(.largeTitle)
+            .padding(50)
+            .foregroundColor(.primary)
+            .clipShape(Circle())
+            .overlay(
+                Circle()
+                    .stroke(user.isActive ? .green : .primary, lineWidth: 5)
+            )
+            .padding(.top)
+    }
     
-    var body: some View {
+    private var aboutSection: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("About")
+                    .font(.title.bold())
+                Spacer()
+            }
+            .padding(.top)
+            ViewDivider()
+                .padding(.bottom, 5)
+            Text(user.wrappedAbout)
+                .font(.subheadline)
+        }
+    }
+    
+    private var informationSection: some View {
         VStack {
             HStack {
                 Text("Age:")
@@ -57,103 +107,47 @@ struct InformationView: View {
         .foregroundColor(.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
-}
-
-struct UserDetailView: View {
-    //@ObservedObject var userData: UserData
-    let user: StoredUser
     
-    @FetchRequest(sortDescriptors: []) var users: FetchedResults<StoredUser>
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                VStack {
-//                    Image(systemName: "person.circle")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: geometry.size.width * 0.3)
-//                        .foregroundColor(.secondary)
-                    Text(user.nameInitials)
-                        .font(.largeTitle)
-                        .padding(50)
-                        .foregroundColor(.primary)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle()
-                                .stroke(user.isActive ? .green : .primary, lineWidth: 5)
-                        )
-                        .padding(.top)
-                    
-                    ViewDivider()
-                        .padding(.vertical)
-                                    
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("About \(user.wrappedName)")
-                                .font(.title.bold())
-                                .padding(.bottom, 1)
-                            Spacer()
-                        }
-                        Text(user.wrappedAbout)
-                            .font(.subheadline)
-                    }
-                    
-                    InformationView(user: user)
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        HStack {
-                            Text("Tags")
-                                .font(.headline.bold())
-                            Spacer()
-                        }
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(user.wrappedTags.components(separatedBy: ","), id: \.self) { tag in
-                                    Text(tag)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 5)
-                                        .overlay(
-                                            Capsule()
-                                                .strokeBorder(.primary, lineWidth: 2)
-                                        )
-                                }
-                            }
-                        }
-                    }
-                    
-                    ViewDivider()
-                        .padding(.vertical)
-                    
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("Friends")
-                                .font(.title.bold())
-                                .padding(.bottom, 1)
-                            Spacer()
-                        }
-                        
-                        ForEach(user.friendsArray) { friend in
-                            HStack {
-                                ActiveIndicator(isActive: friendIsActive(friend: friend))
-                                Text(friend.wrappedName)
-                            }
-                        }
-                    }
+    private var friendsList: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Friends")
+                    .font(.title.bold())
+                Spacer()
+            }
+            .padding(.top)
+            ViewDivider()
+                .padding(.bottom, 5)
+            
+            ForEach(user.friendsArray) { friend in
+                HStack {
+                    ActiveIndicator(isActive: friendIsActive(friend: friend))
+                    Text(friend.wrappedName)
                 }
-                .padding(.horizontal)
             }
         }
-        .navigationTitle(user.wrappedName)
-        .navigationBarTitleDisplayMode(.inline)
     }
     
-    func friendIsActive(friend: StoredFriend) -> Bool {
-        for user in users {
-            if user.wrappedId == friend.wrappedId {
-                return user.isActive
+    private var tagsScrollView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack {
+                Text("Tags")
+                    .font(.headline.bold())
+                Spacer()
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(user.wrappedTags.components(separatedBy: ","), id: \.self) { tag in
+                        Text(tag)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .overlay(
+                                Capsule()
+                                    .strokeBorder(.primary, lineWidth: 2)
+                            )
+                    }
+                }
             }
         }
-        return false
     }
 }
