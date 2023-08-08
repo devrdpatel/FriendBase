@@ -3,7 +3,14 @@
 Created using SwiftUI, FriendBase enables users to easily view others within their organization with just the tap of a few buttons. The app fetches data through a network call to update the information that was cached in Core Data and then cleanly displays the information to users.
 
 ## App Preview
-<img src='https://imgur.com/gI3ykt2.gif' width='300'/> <img src='https://imgur.com/0LFJUId.gif' width='300'/>
+<p align="center">
+  <img alt="Light" src="https://imgur.com/gI3ykt2.gif" width="30%">
+&nbsp; &nbsp;
+  <img alt="Dark" src="https://imgur.com/0LFJUId.gif" width="30%">
+&nbsp; &nbsp;
+  <img alt="Dark" src="https://github.com/devrdpatel/FriendBase/assets/106772575/86f54b12-20f6-4405-ae09-152d48146334.gif" width="28%">
+</p>
+
 
 ## FriendBase's Purpose
 This app can help bring together people that work at an organization by allowing users to see everyone that is involved. The organization just needs to provide a link with data for each person in JSON format and anytime the information in that link updates, all users will automatically see those updates reflected on the next app launch. This approach allows organizations to only share as much information as they feel necessary for each of its members while also maintaining synchronization with their own databases.
