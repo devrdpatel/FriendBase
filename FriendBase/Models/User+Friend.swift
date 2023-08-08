@@ -7,10 +7,8 @@
 
 import Foundation
 
-struct Friend: Codable, Identifiable {
-    let id: String
-    let name: String
-}
+
+// These structs are only used for decoding the JSON data from the network
 
 struct User: Codable, Identifiable {
     let id: String
@@ -26,4 +24,9 @@ struct User: Codable, Identifiable {
     let registered: Date
     let tags: [String]
     var friends: [Friend]
+}
+
+struct Friend: Codable, Identifiable {
+    let id: String
+    let name: String
 }

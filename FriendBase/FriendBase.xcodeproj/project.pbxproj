@@ -78,8 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				2F022FD12A48CB02005CE08E /* FriendBaseApp.swift */,
-				2F8291F62A818D8F00AED8D2 /* Services */,
-				2F42DD132A7DD97F002B0D20 /* ViewModels */,
+				2F8291FB2A81972700AED8D2 /* DataService */,
 				2F42DD122A7DD90C002B0D20 /* Views */,
 				2F42DD0F2A7DBB08002B0D20 /* Models */,
 				2F022FD52A48CB03005CE08E /* Assets.xcassets */,
@@ -112,26 +111,9 @@
 			children = (
 				2F022FD32A48CB02005CE08E /* HomeView.swift */,
 				2F022FE52A49041E005CE08E /* UserDetailView.swift */,
-				2F42DD102A7DC213002B0D20 /* FilteredList.swift */,
-				2FBF714A2A7F00E800C4967B /* ActiveIndicator.swift */,
-				2F84CFFC2A807AFD00CB154B /* ViewDivider.swift */,
+				2F8291FC2A81EFD600AED8D2 /* ViewComponents */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		2F42DD132A7DD97F002B0D20 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		2F8291F62A818D8F00AED8D2 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				2F8291FB2A81972700AED8D2 /* DataService */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		2F8291FB2A81972700AED8D2 /* DataService */ = {
@@ -143,6 +125,16 @@
 				2F42DCFF2A7D8131002B0D20 /* FriendBase.xcdatamodeld */,
 			);
 			path = DataService;
+			sourceTree = "<group>";
+		};
+		2F8291FC2A81EFD600AED8D2 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				2F42DD102A7DC213002B0D20 /* FilteredList.swift */,
+				2FBF714A2A7F00E800C4967B /* ActiveIndicator.swift */,
+				2F84CFFC2A807AFD00CB154B /* ViewDivider.swift */,
+			);
+			path = ViewComponents;
 			sourceTree = "<group>";
 		};
 		2F9F04C22A4B79E2007FFF3D /* StoredFriend */ = {

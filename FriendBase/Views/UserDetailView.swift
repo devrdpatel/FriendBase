@@ -108,26 +108,6 @@ extension UserDetailView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
-    private var friendsList: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Friends")
-                    .font(.title.bold())
-                Spacer()
-            }
-            .padding(.top)
-            ViewDivider()
-                .padding(.bottom, 5)
-            
-            ForEach(user.friendsArray) { friend in
-                HStack {
-                    ActiveIndicator(isActive: friendIsActive(friend: friend))
-                    Text(friend.wrappedName)
-                }
-            }
-        }
-    }
-    
     private var tagsScrollView: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
@@ -146,6 +126,26 @@ extension UserDetailView {
                                     .strokeBorder(.primary, lineWidth: 2)
                             )
                     }
+                }
+            }
+        }
+    }
+    
+    private var friendsList: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Friends")
+                    .font(.title.bold())
+                Spacer()
+            }
+            .padding(.top)
+            ViewDivider()
+                .padding(.bottom, 5)
+            
+            ForEach(user.friendsArray) { friend in
+                HStack {
+                    ActiveIndicator(isActive: friendIsActive(friend: friend))
+                    Text(friend.wrappedName)
                 }
             }
         }
