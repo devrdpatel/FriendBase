@@ -21,28 +21,23 @@ struct HomeView: View {
         NavigationView {
             FilteredList(filterKey: "name", filterValue: searchText, predicateKey: .contains, sortDescriptors: sortDescriptors) { (user: StoredUser) in
                 userListRow(user: user)
-                .padding(.vertical, 3)
+                    .padding(.vertical, 3)
             }
             .searchable(text: $searchText, prompt: "Look for someone")
             .navigationTitle("FriendBase")
             .task {
                 // Fetches new data once upon launching app and updates Core Data objects
+                
                 guard !attemptedDataFetch else { return }
                 await UsersDataManager.shared.updateCachedUsers(users, moc: moc)
             }
             .confirmationDialog("Sort Options", isPresented: $showingSortOptions) {
-                // Sort Options
-                Button("A-Z") { sortDescriptors = [SortDescriptor(\.name)] }
-                Button("Z-A") { sortDescriptors = [SortDescriptor(\.name, order: .reverse)] }
-                Button("Default") { sortDescriptors = [] }
+                sortOptions
             }
             .toolbar {
-                // Sort button
-                Button {
-                    showingSortOptions = true
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down")
-                }
+                // Shows the confirmation dialog with sort options
+                
+                sortButton
             }
         }
     }
@@ -64,6 +59,22 @@ extension HomeView {
                 }
                 Spacer()
             }
+        }
+    }
+    
+    private var sortOptions: some View {
+        Group {
+            Button("A-Z") { sortDescriptors = [SortDescriptor(\.name)] }
+            Button("Z-A") { sortDescriptors = [SortDescriptor(\.name, order: .reverse)] }
+            Button("Default") { sortDescriptors = [] }
+        }
+    }
+    
+    private var sortButton: some View {
+        Button {
+            showingSortOptions = true
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
         }
     }
 }

@@ -14,9 +14,7 @@ import SwiftUI
     static let shared = UsersDataManager()
     
     private init() { }
-    
-    let userDataService = UserDataService()
-    
+        
     func updateCachedUsers(_ cachedUsers: FetchedResults<StoredUser>, moc: NSManagedObjectContext) async {
     
         if let fetchedUsers = await UserDataService.fetchUserData() {

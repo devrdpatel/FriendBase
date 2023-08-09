@@ -16,6 +16,7 @@ struct UserDetailView: View {
         ScrollView {
             VStack {
                 userInitialsBadge
+                    .padding(.top)
                                 
                 aboutSection
                 informationSection
@@ -50,7 +51,6 @@ extension UserDetailView {
                 Circle()
                     .stroke(user.isActive ? .green : .primary, lineWidth: 5)
             )
-            .padding(.top)
     }
     
     private var aboutSection: some View {

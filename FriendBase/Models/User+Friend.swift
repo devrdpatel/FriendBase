@@ -8,7 +8,7 @@
 import Foundation
 
 
-// These structs are only used for decoding the JSON data from the network
+/// These structs are only used for decoding the fetched JSON data and copying it to CoreData
 
 struct User: Codable, Identifiable {
     let id: String
