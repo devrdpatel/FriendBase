@@ -4,9 +4,9 @@ Created using SwiftUI, FriendBase enables users to easily view others within the
 
 ## App Preview
 <p align="center">
-  <img alt="Light" src="https://imgur.com/gI3ykt2.gif" width="30%">
+  <img alt="Light" src="https://imgur.com/gI3ykt2.gif" width="35%">
 &nbsp; &nbsp;
-  <img alt="Dark" src="https://imgur.com/0LFJUId.gif" width="30%">
+  <img alt="Dark" src="https://imgur.com/0LFJUId.gif" width="35%">
 </p>
 
 https://github.com/devrdpatel/FriendBase/assets/106772575/33a40331-a6dc-4d64-b92f-bbd4c0edc485
